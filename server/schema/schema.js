@@ -186,6 +186,30 @@ const Mutation = new GraphQLObjectType({
         });
       },
     },
+    /**
+     * Todoの削除.
+     */
+    deleteTodo: {
+      type: TodoType,
+      args: {
+        id: { type: new GraphQLNonNull(GraphQLID) },
+      },
+      resolve(parent, args) {
+        return Todo.findByIdAndRemove(args.id);
+      },
+    },
+    /**
+     * categoryの削除.
+     */
+    deleteCategory: {
+      type: CategoryType,
+      args: {
+        id: { type: new GraphQLNonNull(GraphQLID) },
+      },
+      resolve(parent, args) {
+        return Category.findByIdAndRemove(args.id);
+      },
+    },
   },
 });
 
