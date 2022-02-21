@@ -7,7 +7,7 @@ const Schema = mongoose.Schema;
 const todoSchema = new Schema({
   title: String,
   categoryId: String,
-  content: String,
+  finish: Boolean,
 });
 
 module.exports = mongoose.model("Todo", todoSchema);

@@ -3,6 +3,7 @@ const {
   GraphQLObjectType,
   GraphQLID,
   GraphQLString,
+  GraphQLBoolean,
   GraphQLSchema,
   GraphQLList,
 } = graphql;
@@ -18,13 +19,13 @@ const TodoType = new GraphQLObjectType({
   fields: () => ({
     id: { type: GraphQLID },
     title: { type: GraphQLString },
+    finish: { type: GraphQLBoolean },
     categoryId: {
       type: CategoryType,
       resolve(parent, args) {
         return Category.findById(parent.categoryId);
       },
     },
-    content: { type: GraphQLString },
   }),
 });
 
@@ -105,13 +106,12 @@ const Mutation = new GraphQLObjectType({
       type: TodoType,
       args: {
         title: { type: GraphQLString },
-        content: { type: GraphQLString },
         categoryId: { type: GraphQLID },
+        finish: { type: GraphQLBoolean },
       },
       resolve(parent, args) {
         let todo = new Todo({
           title: args.title,
-          content: args.content,
           categoryId: args.categoryId,
         });
         return todo.save();
