@@ -27,6 +27,7 @@ export const TrashBox: FC<Props> = memo((props) => {
         id: todoId,
       },
     });
+    alert("削除しました");
   };
 
   return (
