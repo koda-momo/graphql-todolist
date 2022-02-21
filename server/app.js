@@ -3,7 +3,18 @@ const app = express();
 const graphqlHTTP = require("express-graphql").graphqlHTTP;
 const mongoose = require("mongoose");
 require("dotenv").config({ debug: true });
-mongoose.connect(process.env.DB_URL);
+const schema = require("./schema/schema");
+
+/**
+ * schemaの使用.
+ */
+app.use(
+  "/graphql",
+  graphqlHTTP({
+    schema,
+    graphiql: true,
+  })
+);
 
 /**
  * ポート番号,起動した際に発動するメソッド.
@@ -12,6 +23,10 @@ app.listen(4000, () => {
   console.log("サーバに接続しました");
 });
 
+/**
+ * mongoDBに接続.
+ */
+mongoose.connect(process.env.DB_URL);
 /**
  * mongoDBに接続したら際に発動するメソッド.
  */
