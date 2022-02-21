@@ -42,3 +42,32 @@ const CategoryType = new GraphQLObjectType({
     content: { type: GraphQLString },
   }),
 });
+
+/**
+ * 情報取得.
+ */
+const RootQuery = new GraphQLObjectType({
+  name: "RootQueryType",
+  fields: {
+    /**
+     * Todo情報取得.
+     */
+    getTodo: {
+      type: TodoType,
+      args: { id: { type: GraphQLID } },
+      resolve(parents, args) {},
+    },
+    /**
+     * category情報取得.
+     */
+    getCategory: {
+      type: CategoryType,
+      args: { id: { type: GraphQLID } },
+      resolve(parents, args) {},
+    },
+  },
+});
+
+module.exports = new GraphQLSchema({
+  query: RootQuery,
+});
