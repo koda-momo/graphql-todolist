@@ -1,10 +1,17 @@
 import { FC, memo } from "react";
-import { TodoCard } from "./TodoCard";
 
-export const TodoList: FC = memo(() => {
+export type Props = {
+  categoryName: string;
+};
+
+export const TodoCategory: FC<Props> = memo((props) => {
+  const { categoryName } = props;
+
   return (
     <>
-      <div></div>
+      <div className="bg-gray-200 w-20 h-10 flex items-center justify-center rounded-md">
+        {categoryName}
+      </div>
     </>
   );
 });

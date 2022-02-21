@@ -1,4 +1,4 @@
-export type CategoryType = { id: string; name: String };
+export type CategoryType = { id: string; name: string };
 
 export type TodoType = {
   id: string;
