@@ -1,9 +1,12 @@
 import type { NextPage } from "next";
+import { TodoList } from "../components/TodoList";
 
 const Home: NextPage = () => {
   return (
     <>
-      <div>なかみ</div>
+      <div>
+        <TodoList />
+      </div>
     </>
   );
 };
