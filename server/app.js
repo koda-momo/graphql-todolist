@@ -4,6 +4,8 @@ const graphqlHTTP = require("express-graphql").graphqlHTTP;
 const mongoose = require("mongoose");
 require("dotenv").config({ debug: true });
 const schema = require("./schema/schema");
+const cors = require("cors");
+app.use(cors());
 
 /**
  * schemaの使用.
