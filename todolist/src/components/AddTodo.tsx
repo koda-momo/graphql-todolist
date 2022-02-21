@@ -17,15 +17,6 @@ export const AddTodo: FC = memo(() => {
   } = useForm();
 
   /**
-   * クリアボタン
-   */
-  const clear = () => {
-    reset({
-      // accountName: "",
-    });
-  };
-
-  /**
    * addTodo後データ再読み込み.
    */
   const [addTodo] = useMutation(ADD_TODO, {
@@ -44,7 +35,8 @@ export const AddTodo: FC = memo(() => {
         categoryId: data.categoryId,
       },
     });
-    clear();
+    //入力完了→値のリセット
+    reset({ todoTitle: "", categoryId: "" });
   };
 
   return (

@@ -1,12 +1,14 @@
 import { FC, memo } from "react";
+import { Pencil } from "./Pencil";
 import { TrashBox } from "./TrashBox";
 
 export type Props = {
   title: string;
+  todoId: string;
 };
 
 export const TodoCard: FC<Props> = memo((props) => {
-  const { title } = props;
+  const { title, todoId } = props;
 
   return (
     <>
@@ -14,8 +16,11 @@ export const TodoCard: FC<Props> = memo((props) => {
         <div className="mx-5 my-3 bg-stone-100 drop-shadow-md w-60 h-12 flex items-center justify-center text-xl">
           {title}
         </div>
+        <div>
+          <Pencil />
+        </div>
         <div className="ml-3">
-          <TrashBox />
+          <TrashBox todoId={todoId} />
         </div>
       </div>
     </>

@@ -1,11 +1,40 @@
 import { FC, memo } from "react";
+import { useMutation } from "@apollo/client";
+import { DELETE_TODO, TODO_LIST } from "../queries/query";
 
-export const TrashBox: FC = memo(() => {
+export type Props = {
+  todoId: string;
+};
+
+export const TrashBox: FC<Props> = memo((props) => {
+  const { todoId } = props;
+
+  /**
+   * deleteTodo後データ再読み込み.
+   */
+  const [deleteTodo] = useMutation(DELETE_TODO, {
+    refetchQueries: [{ query: TODO_LIST }],
+    awaitRefetchQueries: true,
+  });
+
+  /**
+   * Todo削除.
+   * @param data - 入力データ
+   */
+  const deleteTodoData = () => {
+    deleteTodo({
+      variables: {
+        id: todoId,
+      },
+    });
+  };
+
   return (
     <>
       <button
         type="button"
         className="bg-sky-300 w-10 h-10 flex items-center justify-center rounded-md text-white"
+        onClick={deleteTodoData}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"

@@ -14,7 +14,7 @@ export const TodoList: FC<Props> = memo((props) => {
       <div className="border-solid border-2 border-gray-500 m-10 p-3 rounded-md">
         {todoList.map((todo) => (
           <div key={todo.id}>
-            <TodoCard title={todo.title} />
+            <TodoCard title={todo.title} todoId={todo.id} />
           </div>
         ))}
       </div>
