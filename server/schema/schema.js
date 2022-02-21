@@ -6,6 +6,9 @@ const {
   GraphQLSchema,
   GraphQLList,
 } = graphql;
+//モデル
+const Todo = require("../models/todo");
+const Category = require("../models/category");
 
 /**
  * Todo型.
@@ -54,7 +57,9 @@ const RootQuery = new GraphQLObjectType({
     getTodo: {
       type: TodoType,
       args: { id: { type: GraphQLID } },
-      resolve(parents, args) {},
+      resolve(parents, args) {
+        return Todo.findById(args.id);
+      },
     },
     /**
      * category情報取得.
@@ -62,7 +67,9 @@ const RootQuery = new GraphQLObjectType({
     getCategory: {
       type: CategoryType,
       args: { id: { type: GraphQLID } },
-      resolve(parents, args) {},
+      resolve(parents, args) {
+        return Category.findById(args.id);
+      },
     },
   },
 });
