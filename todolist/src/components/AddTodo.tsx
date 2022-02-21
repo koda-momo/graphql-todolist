@@ -5,8 +5,10 @@ import { useQuery, useMutation } from "@apollo/client";
 import { ADD_TODO, TODO_LIST, CATEGORY_LIST } from "../queries/query";
 
 export const AddTodo: FC = memo(() => {
+  //categoryリスト選択肢用
   const { data } = useQuery(CATEGORY_LIST);
 
+  //react-hook-form
   const {
     register,
     handleSubmit,
@@ -19,21 +21,23 @@ export const AddTodo: FC = memo(() => {
    */
   const clear = () => {
     reset({
-      accountName: "",
-      hireDate: "",
-      birthDay: "",
-      password: "",
-      passwordConf: "",
+      // accountName: "",
     });
   };
 
+  /**
+   * addTodo後データ再読み込み.
+   */
   const [addTodo] = useMutation(ADD_TODO, {
     refetchQueries: [{ query: TODO_LIST }],
     awaitRefetchQueries: true,
   });
 
-  const addTodoData = (data: any, e: any) => {
-    console.log("入力データ:" + JSON.stringify(data));
+  /**
+   * Todo追加.
+   * @param data - 入力データ
+   */
+  const addTodoData = (data: any) => {
     addTodo({
       variables: {
         title: data.todoTitle,
@@ -45,12 +49,11 @@ export const AddTodo: FC = memo(() => {
 
   return (
     <>
-      <div className="w-96 border-solid border-2 border-gray-500 m-10 p-3 rounded-md">
+      <div className="w-96 border-solid border-2 border-gray-500 bg-stone-200 m-10 p-3 rounded-md">
         <div className="text-xl text-center">データの追加</div>
-        <div>
+        <div className="my-5 leading-10">
           <input
-            width={200}
-            height={10}
+            size={40}
             className="border-solid border-1 border-gray-200"
             type="text"
             placeholder="Todo"
@@ -59,7 +62,7 @@ export const AddTodo: FC = memo(() => {
         </div>
         <div>
           <select className="form-control" {...register("categoryId")}>
-            <option hidden>カテゴリ</option>
+            <option hidden>カテゴリの種類を選択</option>
             {data &&
               data.getAllCategory.map((category: CategoryType) => (
                 <option key={category.id} value={category.id}>
