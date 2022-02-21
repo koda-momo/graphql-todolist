@@ -6,6 +6,7 @@ const {
   GraphQLBoolean,
   GraphQLSchema,
   GraphQLList,
+  GraphQLNonNull,
 } = graphql;
 //モデル
 const Todo = require("../models/todo");
