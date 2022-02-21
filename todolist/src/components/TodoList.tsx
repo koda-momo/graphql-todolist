@@ -1,7 +1,12 @@
 import { FC, memo } from "react";
 import { TodoCard } from "./TodoCard";
 
-export const TodoList: FC = memo(() => {
+export type Props = {
+  todoList: string;
+};
+
+export const TodoList: FC<Props> = memo((props) => {
+  const { todoList } = props;
   return (
     <>
       <div className="border-solid border-2 border-gray-500 m-10 p-3 rounded-md">
