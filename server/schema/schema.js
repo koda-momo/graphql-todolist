@@ -20,7 +20,7 @@ const TodoType = new GraphQLObjectType({
     id: { type: GraphQLID },
     title: { type: GraphQLString },
     finish: { type: GraphQLBoolean },
-    categoryId: {
+    category: {
       type: CategoryType,
       resolve(parent, args) {
         return Category.findById(parent.categoryId);
@@ -40,7 +40,7 @@ const CategoryType = new GraphQLObjectType({
     todoList: {
       type: new GraphQLList(TodoType),
       resolve(parent, args) {
-        return Todo.findById({ categoryId: parent.id });
+        return Todo.find({ categoryId: parent.id });
       },
     },
   }),

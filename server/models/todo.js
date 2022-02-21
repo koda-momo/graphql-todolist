@@ -6,8 +6,8 @@ const Schema = mongoose.Schema;
  */
 const todoSchema = new Schema({
   title: String,
-  categoryId: String,
   finish: Boolean,
+  categoryId: String,
 });
 
 module.exports = mongoose.model("Todo", todoSchema);
