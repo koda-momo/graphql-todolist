@@ -114,6 +114,7 @@ const Mutation = new GraphQLObjectType({
         let todo = new Todo({
           title: args.title,
           categoryId: args.categoryId,
+          finish: false,
         });
         return todo.save();
       },
