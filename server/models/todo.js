@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 /**
- * Todoクラスの作成.
+ * Todoモデルの作成.
  */
 const todoSchema = new Schema({
   id: String,
