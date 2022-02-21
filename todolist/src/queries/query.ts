@@ -50,3 +50,14 @@ export const DELETE_TODO = gql`
     }
   }
 `;
+
+/**
+ * Todo完了.
+ */
+export const FINISH_TODO = gql`
+  mutation ($id: ID!, $finish: Boolean) {
+    finishTodo(id: $id, finish: $finish) {
+      title
+    }
+  }
+`;
