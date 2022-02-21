@@ -1,5 +1,9 @@
 import { FC, memo } from "react";
 
 export const Header: FC = memo(() => {
-  return <>ヘッダ</>;
+  return (
+    <>
+      <div>ヘッダ</div>
+    </>
+  );
 });
