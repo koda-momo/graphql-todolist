@@ -2,8 +2,8 @@ const express = require("express");
 const app = express();
 const graphqlHTTP = require("express-graphql").graphqlHTTP;
 const mongoose = require("mongoose");
-const dbUrl = require("./.env.local");
-mongoose.connect(dbUrl);
+require("dotenv").config({ debug: true });
+mongoose.connect(process.env.DB_URL);
 
 /**
  * ポート番号,起動した際に発動するメソッド.
