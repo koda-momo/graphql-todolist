@@ -132,6 +132,43 @@ const Mutation = new GraphQLObjectType({
         return category.save();
       },
     },
+    /**
+     * Todoの更新.
+     * @remarks 項目名、カテゴリ編集可能
+     */
+    updateTodo: {
+      type: TodoType,
+      args: {
+        id: { type: new GraphQLNonNull(GraphQLID) },
+        title: { type: GraphQLString },
+        categoryId: { type: GraphQLID },
+      },
+      resolve(parent, args) {
+        let updateTodo = {};
+        args.title && (updateTodo.title = args.title);
+        args.categoryId && (updateTodo.categoryId = args.categoryId);
+        return Todo.findByIdAndUpdate(args.id, updateTodo, {
+          new: true,
+        });
+      },
+    },
+    /**
+     * categoryの更新.
+     */
+    updateCategory: {
+      type: CategoryType,
+      args: {
+        id: { type: new GraphQLNonNull(GraphQLID) },
+        name: { type: GraphQLString },
+      },
+      resolve(parent, args) {
+        let updateCategory = {};
+        args.name && (updateCategory.name = args.name);
+        return Category.findByIdAndUpdate(args.id, updateCategory, {
+          new: true,
+        });
+      },
+    },
   },
 });
 
