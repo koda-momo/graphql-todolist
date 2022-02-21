@@ -29,6 +29,10 @@ export const AddTodo: FC = memo(() => {
    * @param data - 入力データ
    */
   const addTodoData = (data: any) => {
+    if (data.categoryId === "カテゴリの種類を選択" || data.categoryId === "") {
+      alert("カテゴリを選択してください。");
+      return;
+    }
     addTodo({
       variables: {
         title: data.todoTitle,
