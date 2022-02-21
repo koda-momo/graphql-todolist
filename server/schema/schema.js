@@ -74,6 +74,50 @@ const RootQuery = new GraphQLObjectType({
   },
 });
 
+/**
+ * データの追加.
+ */
+const Mutation = new GraphQLObjectType({
+  name: "Mutation",
+  fields: {
+    /**
+     * Todoの追加
+     */
+    addTodo: {
+      type: TodoType,
+      args: {
+        title: { type: GraphQLString },
+        content: { type: GraphQLString },
+        categoryId: { type: GraphQLID },
+      },
+      resolve(parent, args) {
+        let todo = new Todo({
+          title: args.title,
+          content: args.content,
+          categoryId: args.categoryId,
+        });
+        return todo.save();
+      },
+    },
+    /**
+     * categoryの追加.
+     */
+    addCategory: {
+      type: CategoryType,
+      args: {
+        name: { type: GraphQLString },
+      },
+      resolve(parent, args) {
+        let category = new Category({
+          name: args.name,
+        });
+        return category.save();
+      },
+    },
+  },
+});
+
 module.exports = new GraphQLSchema({
   query: RootQuery,
+  mutation: Mutation,
 });
