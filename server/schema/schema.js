@@ -169,6 +169,23 @@ const Mutation = new GraphQLObjectType({
         });
       },
     },
+    /**
+     * Todoの完了.
+     */
+    finishTodo: {
+      type: TodoType,
+      args: {
+        id: { type: new GraphQLNonNull(GraphQLID) },
+        finish: { type: GraphQLBoolean },
+      },
+      resolve(parent, args) {
+        let finishTodo = {};
+        finishTodo.finish = args.finish;
+        return Todo.findByIdAndUpdate(args.id, finishTodo, {
+          new: true,
+        });
+      },
+    },
   },
 });
 
