@@ -5,7 +5,6 @@ const Schema = mongoose.Schema;
  * Categoryモデルの作成.
  */
 const categorySchema = new Schema({
-  id: String,
   name: String,
 });
 

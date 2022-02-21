@@ -71,6 +71,24 @@ const RootQuery = new GraphQLObjectType({
         return Category.findById(args.id);
       },
     },
+    /**
+     * 全Todoリストの取得.
+     */
+    getAllTodo: {
+      type: new GraphQLList(TodoType),
+      resolve(parent, args) {
+        return Todo.find({});
+      },
+    },
+    /**
+     * 全Categoryリストの取得.
+     */
+    getAllCategory: {
+      type: new GraphQLList(CategoryType),
+      resolve(parent, args) {
+        return Category.find({});
+      },
+    },
   },
 });
 
