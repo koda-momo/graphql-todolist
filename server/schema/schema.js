@@ -39,7 +39,6 @@ const CategoryType = new GraphQLObjectType({
         return Todo.findById({ categoryId: parent.id });
       },
     },
-    content: { type: GraphQLString },
   }),
 });
 
