@@ -18,6 +18,17 @@ export const TODO_LIST = gql`
 `;
 
 /**
+ * Todoリスト1件取得.
+ */
+export const TODO_ITEM = gql`
+  query ($id: ID) {
+    getTodo(id: $id) {
+      title
+    }
+  }
+`;
+
+/**
  * Todoリスト追加.
  */
 export const ADD_TODO = gql`

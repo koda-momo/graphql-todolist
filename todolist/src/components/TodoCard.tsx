@@ -53,7 +53,7 @@ export const TodoCard: FC<Props> = memo((props) => {
           {title}
         </div>
         <div>
-          <Pencil />
+          <Pencil todoId={todoId} />
         </div>
         <div className="ml-3">
           <TrashBox todoId={todoId} />
