@@ -18,12 +18,19 @@ export const TODO_LIST = gql`
 `;
 
 /**
- * Todoリスト1件取得.
+ * Todoリスト1件+カテゴリ全データ取得.
  */
-export const TODO_ITEM = gql`
+export const TODO_AND_Category = gql`
   query ($id: ID) {
     getTodo(id: $id) {
       title
+      category {
+        name
+      }
+    }
+    getAllCategory {
+      id
+      name
     }
   }
 `;
