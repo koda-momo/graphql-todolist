@@ -1,5 +1,23 @@
 import { gql } from "@apollo/client";
 
+export const ALL_LIST = gql`
+  {
+    getAllTodo {
+      id
+      title
+      finish
+      category {
+        id
+        name
+      }
+    }
+    getAllCategory {
+      id
+      name
+    }
+  }
+`;
+
 /**
  * Todoリスト全件取得.
  */
