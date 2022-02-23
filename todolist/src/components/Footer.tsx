@@ -4,7 +4,7 @@ export const Footer: FC = memo(() => {
   return (
     <>
       <footer className="w-full  bg-teal-400 h-12 flex items-center justify-center text-sm text-white">
-        2022-02-21:todolist
+        kodamomo
       </footer>
     </>
   );
