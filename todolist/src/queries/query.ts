@@ -1,5 +1,8 @@
 import { gql } from "@apollo/client";
 
+/**
+ * 全Todo,全カテゴリを取得.
+ */
 export const ALL_LIST = gql`
   {
     getAllTodo {
@@ -38,7 +41,7 @@ export const TODO_LIST = gql`
 /**
  * Todoリスト1件+カテゴリ全データ取得.
  */
-export const TODO_AND_Category = gql`
+export const TODO_AND_CATEGRY = gql`
   query ($id: ID) {
     getTodo(id: $id) {
       title
@@ -54,24 +57,24 @@ export const TODO_AND_Category = gql`
 `;
 
 /**
- * Todoリスト追加.
- */
-export const ADD_TODO = gql`
-  mutation ($title: String, $categoryId: ID) {
-    addTodo(title: $title, categoryId: $categoryId) {
-      title
-    }
-  }
-`;
-
-/**
- * categoryリスト全件取得.
+ * カテゴリリスト全件取得.
  */
 export const CATEGORY_LIST = gql`
   {
     getAllCategory {
       id
       name
+    }
+  }
+`;
+
+/**
+ * Todoリスト追加.
+ */
+export const ADD_TODO = gql`
+  mutation ($title: String, $categoryId: ID) {
+    addTodo(title: $title, categoryId: $categoryId) {
+      title
     }
   }
 `;

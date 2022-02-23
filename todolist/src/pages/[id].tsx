@@ -2,7 +2,7 @@ import type { NextPage } from "next";
 import { useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
 import { useMutation } from "@apollo/client";
-import { TODO_AND_Category } from "../queries/query";
+import { TODO_AND_CATEGRY } from "../queries/query";
 import { CategoryType } from "../types/type";
 import { useForm } from "react-hook-form";
 import { UPDATE_TODO, TODO_LIST } from "../queries/query";
@@ -15,10 +15,16 @@ const TodoFix: NextPage = () => {
   //URLの後ろからid取得
   const todoId = router.query.id;
 
-  const { loading, error, data } = useQuery(TODO_AND_Category, {
+  /**
+   * Todo1件+カテゴリリスト取得.
+   */
+  const { loading, error, data } = useQuery(TODO_AND_CATEGRY, {
     variables: { id: todoId },
   });
 
+  /**
+   * react-hook-form.
+   */
   const {
     register,
     handleSubmit,
@@ -31,6 +37,9 @@ const TodoFix: NextPage = () => {
     },
   });
 
+  /**
+   * デフォルト値読み込み.
+   */
   useEffect(() => {
     reset({
       todoTitle: data?.getTodo.title,
