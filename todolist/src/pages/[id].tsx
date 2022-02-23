@@ -7,6 +7,7 @@ import { CategoryType } from "../types/type";
 import { useForm } from "react-hook-form";
 import { UPDATE_TODO, TODO_LIST } from "../queries/query";
 import { useEffect } from "react";
+import Link from "next/link";
 
 const TodoFix: NextPage = () => {
   //ルーターリンク
@@ -111,6 +112,9 @@ const TodoFix: NextPage = () => {
               更新
             </button>
           </div>
+          <Link href="/">
+            <a>←戻る</a>
+          </Link>
         </div>
       </div>
     </>
