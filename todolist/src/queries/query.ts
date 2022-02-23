@@ -79,3 +79,14 @@ export const FINISH_TODO = gql`
     }
   }
 `;
+
+/**
+ * Todo変更.
+ */
+export const UPDATE_TODO = gql`
+  mutation ($id: ID!, $title: String, $categoryId: ID) {
+    updateTodo(id: $id, title: $title, categoryId: $categoryId) {
+      title
+    }
+  }
+`;

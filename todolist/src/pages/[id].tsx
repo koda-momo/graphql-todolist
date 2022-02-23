@@ -1,15 +1,11 @@
 import type { NextPage } from "next";
-import { TodoList } from "../components/TodoList";
 import { useQuery } from "@apollo/client";
-import {} from "../components/AddTodo";
 import { useRouter } from "next/router";
-import { FC, memo, useEffect, useState } from "react";
 import { useMutation } from "@apollo/client";
-import { gql } from "@apollo/client";
 import { TODO_AND_Category } from "../queries/query";
 import { CategoryType } from "../types/type";
 import { useForm } from "react-hook-form";
-import { ADD_TODO, TODO_LIST, CATEGORY_LIST } from "../queries/query";
+import { UPDATE_TODO, TODO_LIST } from "../queries/query";
 
 const TodoFix: NextPage = () => {
   //ルーターリンク
@@ -31,7 +27,7 @@ const TodoFix: NextPage = () => {
   /**
    * changeTodo後データ再読み込み.
    */
-  const [changeTodo] = useMutation(ADD_TODO, {
+  const [changeTodo] = useMutation(UPDATE_TODO, {
     refetchQueries: [{ query: TODO_LIST }],
     awaitRefetchQueries: true,
   });
@@ -47,6 +43,7 @@ const TodoFix: NextPage = () => {
     }
     changeTodo({
       variables: {
+        id: todoId,
         title: data.todoTitle,
         categoryId: data.categoryId,
       },
@@ -66,11 +63,11 @@ const TodoFix: NextPage = () => {
   }
 
   return (
-    <div>
-      <div>
-        {/* <div>元データ:{data && data.getTodo.title}</div>
+    <>
+      {/* <div>元データ:{data && data.getTodo.title}</div>
         <div>カテゴリ:{data && data.getTodo.category.name}</div> */}
-        <div className="w-96 border-solid border-2 border-gray-500 bg-stone-200 m-10 p-3 rounded-md">
+      <div className="relative">
+        <div className="w-96 border-solid border-2 border-gray-500 bg-stone-200 p-3 rounded-md m-auto fixed left-0 right-0 top-36">
           <div className="text-xl text-center">データの変更</div>
           <div className="my-5 leading-10">
             <input
@@ -104,7 +101,7 @@ const TodoFix: NextPage = () => {
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
