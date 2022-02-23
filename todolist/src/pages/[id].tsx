@@ -6,6 +6,7 @@ import { TODO_AND_Category } from "../queries/query";
 import { CategoryType } from "../types/type";
 import { useForm } from "react-hook-form";
 import { UPDATE_TODO, TODO_LIST } from "../queries/query";
+import { useEffect } from "react";
 
 const TodoFix: NextPage = () => {
   //ルーターリンク
@@ -22,7 +23,19 @@ const TodoFix: NextPage = () => {
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    defaultValues: {
+      todoTitle: data?.getTodo.title,
+      categoryId: String(data?.getTodo.category.id),
+    },
+  });
+
+  useEffect(() => {
+    reset({
+      todoTitle: data?.getTodo.title,
+      categoryId: String(data?.getTodo.category.id),
+    });
+  }, [reset, data]);
 
   /**
    * changeTodo後データ再読み込み.
@@ -64,8 +77,6 @@ const TodoFix: NextPage = () => {
 
   return (
     <>
-      {/* <div>元データ:{data && data.getTodo.title}</div>
-        <div>カテゴリ:{data && data.getTodo.category.name}</div> */}
       <div className="relative">
         <div className="w-96 border-solid border-2 border-gray-500 bg-stone-200 p-3 rounded-md m-auto fixed left-0 right-0 top-36">
           <div className="text-xl text-center">データの変更</div>
@@ -79,6 +90,7 @@ const TodoFix: NextPage = () => {
             />
           </div>
           <div>
+            <div>元カテゴリ:{data && data.getTodo.category.name}</div>
             <select className="form-control" {...register("categoryId")}>
               <option hidden>カテゴリの種類を選択</option>
               {data &&
