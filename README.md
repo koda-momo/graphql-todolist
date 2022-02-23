@@ -4,7 +4,13 @@
 GraphQL練習用に開発したTodoリストです。
 
 ■使用技術
-・TypeScript, HTML, CSS
-・Next.js
+サーバサイド：
+・javascript
 ・GraphQL
 ・MongoDB
+
+クライアントサイド：
+・TypeScript, HTML, CSS
+・Next.js
+・tailwindCSS
+
