@@ -30,22 +30,12 @@ const TodoFix: NextPage = () => {
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm({
-    defaultValues: {
-      todoTitle: data?.getTodo.title,
-      categoryId: String(data?.getTodo.category.id),
-    },
-  });
+    setValue,
+  } = useForm({});
 
-  /**
-   * デフォルト値読み込み.
-   */
-  useEffect(() => {
-    reset({
-      todoTitle: data?.getTodo.title,
-      categoryId: String(data?.getTodo.category.id),
-    });
-  }, [reset, data]);
+  //デフォルト値
+  setValue("todoTitle", data?.getTodo.title);
+  setValue("categoryId", data?.getTodo.category.id);
 
   /**
    * changeTodo後データ再読み込み.
@@ -100,9 +90,7 @@ const TodoFix: NextPage = () => {
             />
           </div>
           <div>
-            <div>元カテゴリ:{data && data.getTodo.category.name}</div>
             <select className="form-control" {...register("categoryId")}>
-              <option hidden>カテゴリの種類を選択</option>
               {data &&
                 data.getAllCategory.map((category: CategoryType) => (
                   <option key={category.id} value={category.id}>

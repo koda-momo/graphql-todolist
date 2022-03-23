@@ -46,6 +46,7 @@ export const TODO_AND_CATEGRY = gql`
     getTodo(id: $id) {
       title
       category {
+        id
         name
       }
     }
